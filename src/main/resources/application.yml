@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url:
+    username:
+    password:
+#    hikari:
+#      max-lifetime: 540000
+#      maximum-pool-size: 3
+#      idle-timeout: 120000
