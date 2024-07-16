@@ -15,5 +15,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build docker image
-        run: docker build -t brun0xp/wedding-api:latest .
+        run: |
+          docker login --username Brun0XP --password ${{ secrets.GH_PAT }} ghcr.io
+          docker build -t ghcr.io/brun0xp/wedding-api:latest .
+          docker push ghcr.io/brun0xp/wedding-api:latest
+
 
