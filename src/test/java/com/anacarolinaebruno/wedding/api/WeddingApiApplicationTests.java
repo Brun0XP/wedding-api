@@ -1,4 +1,4 @@
-package com.anacaroline_e_bruno.wedding_api;
+package com.anacarolinaebruno.wedding.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
