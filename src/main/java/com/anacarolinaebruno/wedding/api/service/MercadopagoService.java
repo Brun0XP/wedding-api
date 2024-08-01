@@ -46,6 +46,7 @@ public class MercadopagoService {
                 .expires(true)
                 .dateOfExpiration(OffsetDateTime.now().plusDays(1))
                 .notificationUrl(String.format("%s/checkout/mercadopago/confirmation?source_news=ipn", apiUrl))
+                .statementDescriptor("Casamento")
                 .paymentMethods(PreferencePaymentMethodsRequest.builder()
                         .excludedPaymentMethods(List.of(PreferencePaymentMethodRequest.builder()
                                 .id("bolbradesco")

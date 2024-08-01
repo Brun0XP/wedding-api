@@ -3,10 +3,10 @@ spring:
     url: ${DATASOURCE_URL}
     username: ${DATASOURCE_USERNAME}
     password: ${DATASOURCE_PASSWORD}
-#    hikari:
-#      max-lifetime: 540000
-#      maximum-pool-size: 3
-#      idle-timeout: 120000
+    hikari:
+      max-lifetime: 540000
+      maximum-pool-size: 3
+      idle-timeout: 120000
 
 application:
   api-url: ${API_URL}
