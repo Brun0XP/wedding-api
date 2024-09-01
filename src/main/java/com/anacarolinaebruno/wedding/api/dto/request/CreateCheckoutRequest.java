@@ -11,4 +11,9 @@ public class CreateCheckoutRequest {
     @JsonProperty("products_id")
     private List<Long> productsId;
 
+    @JsonProperty("firstname")
+    private String firstName;
+
+    @JsonProperty("lastname")
+    private String lastName;
 }

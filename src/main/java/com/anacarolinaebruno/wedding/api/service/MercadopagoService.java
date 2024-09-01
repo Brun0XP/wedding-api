@@ -1,6 +1,8 @@
 package com.anacarolinaebruno.wedding.api.service;
 
+import com.anacarolinaebruno.wedding.api.model.entity.Payment;
 import com.anacarolinaebruno.wedding.api.model.entity.Product;
+import com.anacarolinaebruno.wedding.api.repository.PaymentRepository;
 import com.mercadopago.MercadoPagoConfig;
 import com.mercadopago.client.preference.*;
 import com.mercadopago.exceptions.MPApiException;
@@ -20,14 +22,19 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class MercadopagoService {
 
+    private final PaymentRepository paymentRepository;
     @Value("${application.mercadopago.access-token}")
     private String mercadopagoAccessToken;
 
     @Value("${application.api-url}")
     private String apiUrl;
 
-    public Preference createPreference(List<Product> products) throws MPException, MPApiException, NoSuchElementException {
+    private final PaymentService paymentService;
+
+    public Preference createPreference(String firstName, String lastName, List<Product> products) throws MPException, MPApiException, NoSuchElementException {
         MercadoPagoConfig.setAccessToken(mercadopagoAccessToken);
+
+        Payment payment = paymentService.createNewPayment(firstName, lastName);
 
         List<PreferenceItemRequest> items = new ArrayList<>();
         products.forEach(product -> {
@@ -41,12 +48,24 @@ public class MercadopagoService {
                     .build());
         });
 
+        PreferencePayerRequest payer = PreferencePayerRequest.builder()
+                .name(firstName)
+                .surname(lastName)
+//                .email(checkoutRequest.getEmail())
+//                .identification(IdentificationRequest.builder()
+//                        .type("CPF")
+//                        .number(checkoutRequest.getCpf())
+//                        .build())
+                .build();
+
         PreferenceRequest preferenceRequest = PreferenceRequest.builder()
                 .items(items)
                 .expires(true)
+                .payer(payer)
                 .dateOfExpiration(OffsetDateTime.now().plusDays(1))
                 .notificationUrl(String.format("%s/checkout/mercadopago/confirmation?source_news=ipn", apiUrl))
                 .statementDescriptor("Casamento")
+                .externalReference(payment.getId().toString())
                 .paymentMethods(PreferencePaymentMethodsRequest.builder()
                         .excludedPaymentMethods(List.of(PreferencePaymentMethodRequest.builder()
                                 .id("bolbradesco")
@@ -57,7 +76,13 @@ public class MercadopagoService {
                         .build())
                 .build();
 
+
         PreferenceClient client = new PreferenceClient();
-        return client.create(preferenceRequest);
+        Preference preference = client.create(preferenceRequest);
+
+        payment.setPreferenceId(preference.getId());
+        paymentRepository.save(payment);
+
+        return preference;
     }
 }

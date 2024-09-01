@@ -21,7 +21,7 @@ public class CheckoutService {
     public CheckoutResponse createCheckout(CreateCheckoutRequest checkoutRequest) throws MPException, MPApiException {
         List<Product> products = productService.getProducts(checkoutRequest.getProductsId());
 
-        Preference preference =  mercadopagoService.createPreference(products);
+        Preference preference =  mercadopagoService.createPreference(checkoutRequest.getFirstName(), checkoutRequest.getLastName(), products);
 
         return CheckoutResponse.builder().mercadopagoPreferenceId(preference.getId()).build();
     }

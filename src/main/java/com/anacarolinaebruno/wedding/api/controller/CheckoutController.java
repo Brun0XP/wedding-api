@@ -22,4 +22,9 @@ public class CheckoutController {
         return checkoutService.createCheckout(request);
     }
 
+    @PostMapping("mercadopago/confirmation")
+    public CheckoutResponse mercadopagoConfirmation(@RequestBody CreateCheckoutRequest request) throws MPException, MPApiException, NoSuchElementException {
+        return checkoutService.createCheckout(request);
+    }
+
 }
