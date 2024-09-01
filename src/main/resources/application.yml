@@ -7,6 +7,8 @@ spring:
       max-lifetime: 540000
       maximum-pool-size: 3
       idle-timeout: 120000
+  liquibase:
+    change-log: 'classpath:/db/liquibase-changelog.xml'
 
 application:
   api-url: ${API_URL}
