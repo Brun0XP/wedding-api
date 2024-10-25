@@ -7,5 +7,6 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <include file="migrations/202408312233_cria_tabela_produtos_e_categorias.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/202410242214_create_rsvp_table.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
