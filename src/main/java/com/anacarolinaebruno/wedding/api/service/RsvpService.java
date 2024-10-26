@@ -5,6 +5,8 @@ import com.anacarolinaebruno.wedding.api.repository.RsvpRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class RsvpService {
@@ -13,6 +15,10 @@ public class RsvpService {
 
     public RSVP saveRsvp(RSVP rsvp) {
         return rsvpRepository.save(rsvp);
+    }
+
+    public List<RSVP> getRsvpMessagesApproved() {
+        return rsvpRepository.findAllByApprovedMessageTrueOrderByReplyDateDesc();
     }
 
 }
