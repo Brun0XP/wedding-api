@@ -30,7 +30,7 @@ public class RSVP {
     private String email;
 
     @Column(nullable = false)
-    private boolean confirmation;
+    private Boolean confirmation;
 
     @Column(nullable = false)
     private Integer guestsAmount;
@@ -43,6 +43,6 @@ public class RSVP {
     private String message;
 
     @Column(nullable = false)
-    private boolean approvedMessage;
+    private Boolean approvedMessage = true;
 
 }
