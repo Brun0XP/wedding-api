@@ -31,4 +31,10 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="202410282214-02" author="Bruno">
+        <addUniqueConstraint
+                columnNames="email"
+                tableName="rsvp" />
+    </changeSet>
+
 </databaseChangeLog>
