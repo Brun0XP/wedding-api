@@ -13,6 +13,7 @@ import java.util.List;
 public interface RsvpMapper {
 
     @Mapping(target = "approvedMessage", constant = "false")
+    @Mapping(target = "email", expression = "java(rsvpRequestDTO.getEmail().toLowerCase())")
     RSVP toEntity(RsvpRequestDTO rsvpRequestDTO);
 
     RsvpResponseDTO toResponseDTO(RSVP rsvp);
