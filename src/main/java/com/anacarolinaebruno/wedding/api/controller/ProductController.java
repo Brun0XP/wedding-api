@@ -22,7 +22,7 @@ public class ProductController {
     private final ProductMapper productMapper;
 
     @GetMapping
-    public ResponseEntity<Page<ProductResponseDTO>> getAllProducts(@RequestParam(required = false) Long categoryId, @PageableDefault(size = 100) Pageable pageable) {
+    public ResponseEntity<Page<ProductResponseDTO>> getAllProducts(@RequestParam(required = false) Long categoryId, @PageableDefault(size = 200) Pageable pageable) {
         Page<Product> productsPage = productService.getAllProductsPageable(categoryId, pageable);
         return ResponseEntity.ok(productMapper.toResponsePage(productsPage));
     }
