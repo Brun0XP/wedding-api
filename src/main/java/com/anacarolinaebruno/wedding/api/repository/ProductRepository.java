@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    Page<Product> findByCategory(Category category, Pageable pageable);
+    Page<Product> findByCategoryAndActiveIsTrue(Category category, Pageable pageable);
+
+    Page<Product> findByActiveIsTrue(Pageable pageable);
 
 }

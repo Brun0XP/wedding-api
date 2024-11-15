@@ -21,10 +21,10 @@ public class ProductService {
     public Page<Product> getAllProductsPageable(Long categoryId, Pageable pageable) {
         if (categoryId != null) {
             Category category = categoryService.getCategory(categoryId);
-            return productRepository.findByCategory(category, pageable);
+            return productRepository.findByCategoryAndActiveIsTrue(category, pageable);
         }
 
-        return productRepository.findAll(pageable);
+        return productRepository.findByActiveIsTrue(pageable);
     }
 
     public List<Product> getProducts(List<Long> ids) {
