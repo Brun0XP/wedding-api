@@ -1,11 +1,14 @@
 package com.anacarolinaebruno.wedding.api.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -28,6 +31,37 @@ public class Payment {
 
     @Column(name = "lastname")
     private String lastName;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "ip_address")
+    private String ipAddress;
+
+    @Column(name = "transaction_amount")
+    private Double transactionAmount;
+
+    @Column(name = "received_amount")
+    private Double receivedAmount;
+
+    @Column(name = "payment_method")
+    private String paymentMethod;
+
+    @Column(name = "order_id")
+    private Long orderId;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @Column(name = "approved_at")
+    private LocalDateTime dateApproved;
+
+    @Column(name = "created_at")
+    private LocalDateTime dateCreated;
+
+    @Column(name = "updated_at")
+    private LocalDateTime lastModified;
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "payment_status")
