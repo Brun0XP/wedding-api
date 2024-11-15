@@ -123,6 +123,7 @@ public class MercadopagoService {
 
         if (paidAmount.compareTo(merchantOrder.getTotalAmount()) >= 0) {
             paymentRepository.findByPreferenceId(merchantOrder.getPreferenceId()).ifPresentOrElse(currentPayment -> {
+                currentPayment.setPaymentId(payment.getId());
                 currentPayment.setEmail(payment.getPayer().getEmail());
                 currentPayment.setIpAddress(payment.getAdditionalInfo().getIpAddress());
                 currentPayment.setTransactionAmount(payment.getTransactionAmount().doubleValue());

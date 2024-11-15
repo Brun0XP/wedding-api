@@ -23,6 +23,9 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="payment_id")
+    private Long paymentId;
+
     @Column(name = "preference_id")
     private String preferenceId;
 
