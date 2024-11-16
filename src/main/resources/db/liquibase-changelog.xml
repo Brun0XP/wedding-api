@@ -8,5 +8,6 @@
 
     <include file="migrations/202408312233_cria_tabela_produtos_e_categorias.xml" relativeToChangelogFile="true"/>
     <include file="migrations/202410242214_create_rsvp_table.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/202411161537_create_users_table.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

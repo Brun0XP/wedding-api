@@ -14,3 +14,9 @@ application:
   api-url: ${API_URL}
   mercadopago:
     access-token: ${MERCADOPAGO_TOKEN}
+  jwt:
+    secret: ${JWT_SECRET}
+
+server:
+  error:
+    include-stacktrace: never
