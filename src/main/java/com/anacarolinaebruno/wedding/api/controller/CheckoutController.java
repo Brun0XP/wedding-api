@@ -24,7 +24,7 @@ public class CheckoutController {
     private final MercadopagoService mercadopagoService;
 
     @PostMapping("create")
-    public CheckoutResponse createCheckout(@RequestBody CreateCheckoutRequest request) throws MPException, MPApiException, NoSuchElementException {
+    public CheckoutResponse createCheckout(@RequestBody CreateCheckoutRequest request) throws MPException, MPApiException, NoSuchElementException, ValidationException {
         return checkoutService.createCheckout(request);
     }
 

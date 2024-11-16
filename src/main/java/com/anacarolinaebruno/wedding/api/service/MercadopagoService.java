@@ -134,6 +134,10 @@ public class MercadopagoService {
                 currentPayment.setDateCreated(payment.getDateApproved().toLocalDateTime());
                 currentPayment.setDateApproved(payment.getDateCreated().toLocalDateTime());
                 currentPayment.setLastModified(payment.getDateLastUpdated().toLocalDateTime());
+
+                if (currentPayment.getStatus().equals(Payment.Status.APPROVED)) {
+                    currentPayment.getProduct().setActive(false);
+                }
             }, () -> {
                 logger.info("Preferencia não encontrada, pagamento não registrado", id);
             });

@@ -39,4 +39,8 @@ public class Product {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    public Boolean isInactive() {
+        return !active;
+    }
 }
