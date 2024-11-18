@@ -23,4 +23,14 @@ public class TokenService {
                 .withExpiresAt(LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00")))
                 .sign(algorithm);
     }
+
+    public String getSubject(String tokenJWT) {
+        Algorithm algorithm = Algorithm.HMAC256(secret);
+
+        return JWT.require(algorithm)
+                .withIssuer("API Wedding")
+                .build()
+                .verify(tokenJWT)
+                .getSubject();
+    }
 }

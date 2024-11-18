@@ -1,5 +1,6 @@
 package com.anacarolinaebruno.wedding.api.dto.request;
 
+import com.anacarolinaebruno.wedding.api.validation.annotation.EmailOrPhone;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -11,7 +12,7 @@ public class RsvpRequestDTO {
     private String name;
 
     @NotBlank(message = "O email é obrigatório.")
-    @Email(message = "O email deve ser válido.")
+    @EmailOrPhone(message = "O email ou telefone deve ser válido.")
     @Size(max = 100, message = "O email não pode ter mais que 100 caracteres.")
     private String email;
 
